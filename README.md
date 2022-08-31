@@ -1,2 +1,2 @@
 # Trashcat
-- A Discord bot written in Typescript.
+A Discord bot written in Typescript.

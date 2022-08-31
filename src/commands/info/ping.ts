@@ -2,8 +2,9 @@ import { Command } from "../../structures/Command";
 
 export default new Command({
     name: "ping",
-    description: "Replies with pong.",
-    run: async ({ interaction }) => {
-        interaction.followUp("Pong");
+    description: "Check out how fast Trashcat is at the moment. (less ms means faster connection)",
+    run: async ({ client, interaction }) => {
+        // Print out the ping of the client's websocket.
+        interaction.followUp(`${client.ws.ping}ms`);
     }
 })

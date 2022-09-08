@@ -2,7 +2,8 @@
   "dependencies": {
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.2",
-    "glob": "^7.2.0"
+    "glob": "^7.2.0",
+    "mongoose": "^6.5.5"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",

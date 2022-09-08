@@ -3,6 +3,7 @@ import { client } from "..";
 import { Event } from "../structures/Event";
 import { ExtendedInteraction } from "../typings/Command";
 
+
 export default new Event('interactionCreate', async (interaction) => {
     // Chat input commands
     if (interaction.isCommand()) {

@@ -4,6 +4,7 @@ import { glob } from "glob";
 import { promisify } from "util";
 import { RegisterCommandsOptions } from "../typings/Client";
 import { Event } from "./Event";
+import mongoose from "mongoose";
 
 const globPromise = promisify(glob);
 
@@ -27,7 +28,7 @@ export class ExtendedClient extends Client {
         if (guildId) {
             this.guilds.cache.get(guildId)?.commands.set(commands);
             console.log(`Registering commands to ${guildId}.`);
-        } else {
+        } else if (this.application != null) {
             this.application.commands.set(commands);
             console.log('Registering global commands.');
         }
@@ -62,6 +63,13 @@ export class ExtendedClient extends Client {
         eventFiles.forEach(async (filePath) => {
             const event: Event<keyof ClientEvents> = await this.importFile(filePath);
             this.on(event.event, event.run);
+        });
+
+        // Mongoose
+        if (!process.env.mongoURI) return;
+
+        mongoose.connect(process.env.mongoURI).then(() => {
+            console.log('Connected to MongoDB.');
         });
     }
 }

@@ -1,8 +1,14 @@
-import { ApplicationCommandDataResolvable, Client, ClientEvents, Collection, GatewayIntentBits } from "discord.js";
+import { 
+    ApplicationCommandDataResolvable, 
+    Client, 
+    ClientEvents, 
+    Collection, 
+    GatewayIntentBits 
+} from "discord.js";
 import { CommandType } from "../typings/Command";
 import { glob } from "glob";
 import { promisify } from "util";
-import { RegisterCommandsOptions } from "../typings/Client";
+import type { RegisterCommandsOptions } from "../typings/Client";
 import { Event } from "./Event";
 import mongoose from "mongoose";
 
@@ -43,10 +49,10 @@ export class ExtendedClient extends Client {
 
         commandFiles.forEach(async (filePath) => {
             const command: CommandType = await this.importFile(filePath);
-            if (!command.name) return;
+            if (!command.data.name) return;
 
-            this.commands.set(command.name, command);
-            slashCommands.push(command);
+            this.commands.set(command.data.name, command);
+            slashCommands.push(command.data);
         });
 
         this.on("ready", () => {
@@ -68,7 +74,8 @@ export class ExtendedClient extends Client {
         // Mongoose
         if (!process.env.mongoURI) return;
 
-        mongoose.connect(process.env.mongoURI).then(() => {
+        mongoose.connect(process.env.mongoURI)
+        .then(() => {
             console.log('Connected to MongoDB.');
         });
     }

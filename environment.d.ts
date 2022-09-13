@@ -5,6 +5,7 @@ declare global {
             guildId: string;
             environment: "dev" | "prod" | "debug";
             mongoURI: string;
+            openaiKey: string;
         }
     }
 }

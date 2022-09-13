@@ -1,6 +1,5 @@
 import { CommandInteractionOptionResolver } from "discord.js";
 import { client } from "..";
-import { ExtendedClient } from "../structures/Client";
 import { Event } from "../structures/Event";
 import { ExtendedInteraction } from "../typings/Command";
 
@@ -11,10 +10,14 @@ export default new Event('interactionCreate', async (interaction) => {
         await interaction.deferReply();
         const command = client.commands.get(interaction.commandName);
         if (!command) return interaction.followUp("You have used a non-existant command.");
-        command.execute({
-            args: interaction.options as CommandInteractionOptionResolver,
-            client,
-            interaction: interaction as ExtendedInteraction,
-        });
+        try {
+            command.execute({
+                args: interaction.options as CommandInteractionOptionResolver,
+                client,
+                interaction: interaction as ExtendedInteraction,
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 });

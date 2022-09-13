@@ -40,8 +40,8 @@ export default new Command({
         const embed = new EmbedBuilder()
             .setTitle(":8ball: 8ball")
             .addFields(
-                { name: 'You asked: ', value: question },
-                { name: 'Your answer: ', value: response },
+                { name: 'You asked:', value: question },
+                { name: 'Your answer:', value: response },
             );
  
         // Send the embed.

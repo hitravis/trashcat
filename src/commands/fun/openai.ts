@@ -24,7 +24,7 @@ export default new Command({
         const prompt: string | null = args.getString("prompt");
         if (prompt == null) {
             return interaction.followUp("Something went wrong. Sorry!");
-        };;
+        };
 
         const completion = await openai.createCompletion({
             model: "text-davinci-002",

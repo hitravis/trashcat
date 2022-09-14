@@ -6,7 +6,9 @@ import { ExtendedInteraction } from "../../typings/Command";
 export default new Command({
     data: new SlashCommandBuilder()
         .setName("say")
+        .setNameLocalization("ja", "言い返す")
         .setDescription("The Trashcat will repeat what you say.")
+        .setDescriptionLocalization("ja", "ゴミ猫があなたの言葉を言い返します。")
         .addStringOption(option =>
             option
                 .setName("prompt")

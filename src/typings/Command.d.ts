@@ -5,7 +5,7 @@ import {
     GuildMember, 
     SlashCommandBuilder
 } from "discord.js";
-import { ExtendedClient } from "../structures/Client";
+import { ExtendedClient } from "../structures/discord/Client";
 
 
 export interface ExtendedInteraction extends CommandInteraction {

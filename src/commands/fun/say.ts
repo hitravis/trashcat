@@ -1,6 +1,5 @@
-import { CommandInteractionOptionResolver, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
-import { ExtendedInteraction } from "../../typings/Command";
 
 
 export default new Command({
@@ -16,7 +15,7 @@ export default new Command({
                 .setRequired(true)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
-    execute: async ({ interaction, args }:{interaction:ExtendedInteraction, args: CommandInteractionOptionResolver}) => {
+    async execute({ interaction, args }) {
         // Grab their prompt.
         const prompt: string | null = args.getString("prompt");
         if (prompt == null) {

@@ -1,7 +1,6 @@
-import { CommandInteractionOptionResolver, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { Configuration, OpenAIApi } from "openai";
 import { Command } from "../../structures/Command";
-import { ExtendedInteraction } from "../../typings/Command";
 
 // Set up OpenAI.
 const configuration = new Configuration({
@@ -20,7 +19,7 @@ export default new Command({
                 .setRequired(true)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
-    execute: async ({ interaction, args }:{interaction:ExtendedInteraction, args: CommandInteractionOptionResolver}) => {
+    async execute({ interaction, args }) {
         const prompt: string | null = args.getString("prompt");
         if (prompt == null) {
             return interaction.followUp("Something went wrong. Sorry!");

@@ -1,7 +1,6 @@
-import { CommandInteractionOptionResolver, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import { PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
 import User from "../../structures/mongodb/User";
-import { ExtendedInteraction } from "../../typings/Command";
 import ms from "ms";
 
 
@@ -22,7 +21,7 @@ export default new Command({
                 .setRequired(true)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
-    execute: async ({ interaction, args }:{ interaction:ExtendedInteraction, args:CommandInteractionOptionResolver }) => {
+    async execute({ interaction, args }) {
         // Parse their arguments.
         const remindTime = args.getString("time");
         const reminder = args.getString("reminder");

@@ -1,6 +1,5 @@
-import { CommandInteractionOptionResolver, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
-import { ExtendedInteraction } from "../../typings/Command";
 
 // The list of responses to choose from.
 const options: Array<string> = [
@@ -28,7 +27,7 @@ export default new Command({
                 .setRequired(true)
         )
         .setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
-    execute: async ({ interaction, args }:{interaction:ExtendedInteraction, args:CommandInteractionOptionResolver}) => {
+    async execute({ interaction, args }) {
         // Store the question.
         const question: string | null = args.getString("question")
         if (question == null) return;

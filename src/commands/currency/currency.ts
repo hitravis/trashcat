@@ -42,9 +42,8 @@ export default new Command({
         
         // Create an embed to display the result.
         const embed = new EmbedBuilder()
-            .setAuthor({ name: username })
             .setTitle("Currency")
-            .setDescription(`**${currency}** Coin${plural}`);
+            .setDescription(`${username} currently has **${currency}** coin${plural}.`);
 
         // Send the embed.
         await interaction.followUp({ embeds: [embed] });

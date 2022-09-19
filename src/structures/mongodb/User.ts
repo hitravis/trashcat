@@ -5,6 +5,7 @@ const userSchema = new Schema({
     memberId: String,
     currency: { type: Number, default: 0 },
     experience: { type: Number, default: 0},
+    guildExperience: { type: String, default: "" },
     // A JSON string containing an array of <reminder, expiry> pairs.
     reminders: { type: String, default: "" },
 });

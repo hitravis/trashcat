@@ -18,7 +18,14 @@ export class ExtendedClient extends Client {
     commands: Collection<string, CommandType> = new Collection();
 
     constructor() {
-        super({ intents: [GatewayIntentBits.Guilds] });
+        super({ 
+            intents: [
+                GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMembers,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.DirectMessages
+            ] 
+        });
     }
 
     start() {

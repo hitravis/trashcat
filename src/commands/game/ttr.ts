@@ -1,10 +1,25 @@
 import axios from "axios";
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
-import { Invasion } from "../../typings/commands/game/ttr";
+import { FieldOffice, Invasion } from "../../typings/commands/game/ttr";
 
 const TTR_POPULATION = "https://www.toontownrewritten.com/api/population";
-const TTR_INVASIONS = "https://www.toontownrewritten.com/api/invasions"
+const TTR_INVASIONS = "https://www.toontownrewritten.com/api/invasions";
+const TTR_FIELDOFFICES = "https://www.toontownrewritten.com/api/fieldoffices";
+
+const zoneIdToName = new Map([
+    ["3100", "Walrus Way"],
+    ["3200", "Sleet Street"],
+    ["3300", "Polar Place"],
+    ["4100", "Alto Avenue"],
+    ["4200", "Baritone Boulevard"],
+    ["4300", "Tenor Terrace"],
+    ["5100", "Elm Street"],
+    ["5200", "Maple Street"],
+    ["5300", "Oak Street"],
+    ["9100", "Lullaby Lane"],
+    ["9200", "Pajama Place"],
+]);
 
 export default new Command({
     data: new SlashCommandBuilder()
@@ -19,6 +34,11 @@ export default new Command({
             subcommand
                 .setName("invasions")
                 .setDescription("Displays the districts which currently have an ongoing invasion.")
+        )
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName("fo")
+                .setDescription("Displays the currently available Field Offices.")
         ),
     async execute({ interaction, args }) {
         // Store the response data from the Toontown Rewritten website.
@@ -65,6 +85,7 @@ export default new Command({
                 break;
             
             case "invasions":
+                // Get the invasion data from the Toontown Rewritten website.
                 try {
                     response = await axios.get(TTR_INVASIONS);
                 } catch (error) {
@@ -78,7 +99,7 @@ export default new Command({
                 for (const [key, value] of invasions) {
                     embed.addFields({
                         name: `${key}`,
-                        value: `${value.type} (${value.progress})`,
+                        value: `${value.type}\n(${value.progress})`,
                         inline: true,
                     });
                 }
@@ -89,6 +110,35 @@ export default new Command({
                 embed.setFooter({
                     text: `Last updated on ${lastUpdated.toLocaleDateString('en-us')} at ` + 
                     `${lastUpdated.toLocaleTimeString('en-us')}.`
+                });
+                break;
+
+            case "fo":
+                // Get the field office data from the Toontown Rewritten website.
+                let foData;
+                try {
+                    foData = (await axios.get(TTR_FIELDOFFICES)).data;
+                } catch (error) {
+                    console.log(error);
+                    return;
+                }
+
+                const fieldoffices: Map<string, FieldOffice> = new Map(Object.entries(foData.fieldOffices));
+                
+                // Population the fields with all of the district population data.
+                for (const [key, value] of fieldoffices) {
+                    embed.addFields({
+                        name: `${zoneIdToName.get(key)}`,
+                        value: `Difficulty: ${value.difficulty + 1}\nAnnexes: ${value.annexes}\nOpen: ${value.open ? 'Yes' : 'No'}`,
+                        inline: true,
+                    });
+                }
+
+                // Display the last time it was updated.
+                lastUpdated = new Date(0);
+                lastUpdated.setUTCSeconds(foData.lastUpdated);
+                embed.setFooter({
+                    text: `Last updated on ${lastUpdated.toLocaleDateString()} at ${lastUpdated.toLocaleTimeString()}.`
                 });
                 break;
         }

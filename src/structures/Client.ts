@@ -6,13 +6,12 @@ import {
     GatewayIntentBits 
 } from "discord.js";
 import { CommandType } from "../typings/Command";
-import { glob } from "glob";
-import { promisify } from "util";
 import type { RegisterCommandsOptions } from "../typings/Client";
 import { Event } from "./Event";
 import mongoose from "mongoose";
+import glob from "glob-promise";
+import { join } from "path";
 
-const globPromise = promisify(glob);
 
 export class ExtendedClient extends Client {
     commands: Collection<string, CommandType> = new Collection();
@@ -50,9 +49,7 @@ export class ExtendedClient extends Client {
     async registerModules() {
         // Commands
         const slashCommands: ApplicationCommandDataResolvable[] = [];
-        const commandFiles = await globPromise(
-            `${__dirname}/../commands/*/*{.ts,.js}`
-        );
+        const commandFiles = await glob(join(__dirname, '..', 'commands', '*', '*{.ts, .js}').replaceAll('\\', '/'));
 
         commandFiles.forEach(async (filePath) => {
             const command: CommandType = await this.importFile(filePath);
@@ -70,9 +67,7 @@ export class ExtendedClient extends Client {
         });
 
         // Events
-        const eventFiles = await globPromise(
-            `${__dirname}/../events/*{.ts,.js}`
-        );
+        const eventFiles = await glob(join(__dirname, '..', 'events', '*{.ts,.js}').replaceAll('\\', '/'))
         eventFiles.forEach(async (filePath) => {
             const event: Event<keyof ClientEvents> = await this.importFile(filePath);
             this.on(event.event, event.run);
@@ -81,9 +76,14 @@ export class ExtendedClient extends Client {
         // Mongoose
         if (!process.env.mongoURI) return;
 
-        mongoose.connect(process.env.mongoURI)
-        .then(() => {
+        // As of Mongoose v7, strictQuery needs to be false.
+        mongoose.set("strictQuery", false);
+        
+        try {
+            await mongoose.connect(process.env.mongoURI);
             console.log('Connected to MongoDB.');
-        });
+        } catch {
+            console.log('Something went wrong.');
+        }
     }
 }

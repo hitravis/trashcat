@@ -83,7 +83,7 @@ export class ExtendedClient extends Client {
             await mongoose.connect(process.env.mongoURI);
             console.log('Connected to MongoDB.');
         } catch {
-            console.log('Something went wrong.');
+            console.log('Could not connect to MongoDB.');
         }
     }
 }

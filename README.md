@@ -19,5 +19,5 @@ A Discord application written using TypeScript and Discord.js v14.
 
 **Updating Dependencies**
 - To update the dependencies in the *package.json* file, simply input these commands:
--- *ncu -g*
--- *npm install*
+  - *ncu -g*
+  - *npm install*

@@ -1,0 +1,423 @@
+[
+    {
+      "name": "Balloon Fish",
+      "weights": [1, 3],
+      "rarity": 1,
+      "genus": 0
+    },
+    {
+      "name": "Hot Air Balloon Fish",
+      "weights": [1, 1],
+      "rarity": 4,
+      "genus": 0
+    },
+    {
+      "name": "Weather Balloon Fish",
+      "weights": [3, 5],
+      "rarity": 5,
+      "genus": 0
+    },
+    {
+      "name": "Water Balloon Fish",
+      "weights": [3, 5],
+      "rarity": 3,
+      "genus": 0
+    },
+    {
+      "name": "Red Balloon Fish",
+      "weights": [1, 5],
+      "rarity": 2,
+      "genus": 0
+    },
+    {
+      "name": "Peanut Butter & Jellyfish",
+      "weights": [1, 5],
+      "rarity": 2,
+      "genus": 1
+    },
+    {
+      "name": "Grape PB&J Fish",
+      "weights": [1, 5],
+      "rarity": 3,
+      "genus": 1
+    },
+    {
+      "name": "Crunchy PB&J Fish",
+      "weights": [1, 5],
+      "rarity": 4,
+      "genus": 1
+    },
+    {
+      "name": "Strawberry PB&J Fish",
+      "weights": [1, 5],
+      "rarity": 5,
+      "genus": 1
+    },
+    {
+      "name": "Concord Grape PB&J Fish",
+      "weights": [1, 5],
+      "rarity": 10,
+      "genus": 1
+    },
+    {
+      "name": "Cat Fish",
+      "weights": [2, 6],
+      "rarity": 1,
+      "genus": 2
+    },
+    {
+      "name": "Siamese Cat Fish",
+      "weights": [2, 6],
+      "rarity": 9,
+      "genus": 2
+    },
+    {
+      "name": "Alley Cat Fish",
+      "weights": [5, 11],
+      "rarity": 4,
+      "genus": 2
+    },
+    {
+      "name": "Tabby Cat Fish",
+      "weights": [2, 6],
+      "rarity": 3,
+      "genus": 2
+    },
+    {
+      "name": "Tom Cat Fish",
+      "weights": [5, 11],
+      "rarity": 2,
+      "genus": 2
+    },
+    {
+      "name": "Clown Fish",
+      "weights": [2, 8],
+      "rarity": 1,
+      "genus": 3
+    },
+    {
+      "name": "Sad Clown Fish",
+      "weights": [2, 8],
+      "rarity": 4,
+      "genus": 3
+    },
+    {
+      "name": "Party Clown Fish",
+      "weights": [2, 8],
+      "rarity": 2,
+      "genus": 3
+    },
+    {
+      "name": "Circus Clown Fish",
+      "weights": [2, 8],
+      "rarity": 6,
+      "genus": 3
+    },
+    {
+      "name": "Frozen Fish",
+      "weights": [8, 12],
+      "rarity": 1,
+      "genus": 4
+    },
+    {
+      "name": "Star Fish",
+      "weights": [1, 5],
+      "rarity": 1,
+      "genus": 5
+    },
+    {
+      "name": "Five Star Fish",
+      "weights": [2, 6],
+      "rarity": 2,
+      "genus": 5
+    },
+    {
+      "name": "Rock Star Fish",
+      "weights": [5, 10],
+      "rarity": 5,
+      "genus": 5
+    },
+    {
+      "name": "Shining Star Fish",
+      "weights": [1, 5],
+      "rarity": 7,
+      "genus": 5
+    },
+    {
+      "name": "All Star Fish",
+      "weights": [1, 5],
+      "rarity": 10,
+      "genus": 5
+    },
+    {
+      "name": "Holey Mackerel",
+      "weights": [6, 10],
+      "rarity": 9,
+      "genus": 6
+    },
+    {
+      "name": "Dog Fish",
+      "weights": [7, 15],
+      "rarity": 1,
+      "genus": 7
+    },
+    {
+      "name": "Bull Dog Fish",
+      "weights": [18, 20],
+      "rarity": 6,
+      "genus": 7
+    },
+    {
+      "name": "Hot Dog Fish",
+      "weights": [1, 5],
+      "rarity": 5,
+      "genus": 7
+    },
+    {
+      "name": "Dalmation Dog Fish",
+      "weights": [3, 7],
+      "rarity": 4,
+      "genus": 7
+    },
+    {
+      "name": "Puppy Dog Fish",
+      "weights": [1, 2],
+      "rarity": 2,
+      "genus": 7
+    },
+    {
+      "name": "Devil Ray",
+      "weights": [1, 20],
+      "rarity": 10,
+      "genus": 8
+    },
+    {
+      "name": "Amore Eel",
+      "weights": [2, 6],
+      "rarity": 1,
+      "genus": 9
+    },
+    {
+      "name": "Electric Amore Eel",
+      "weights": [2, 6],
+      "rarity": 3,
+      "genus": 9
+    },
+    {
+      "name": "Nurse Shark",
+      "weights": [4, 12],
+      "rarity": 5,
+      "genus": 10
+    },
+    {
+      "name": "Clara Nurse Shark",
+      "weights": [4, 12],
+      "rarity": 7,
+      "genus": 10
+    },
+    {
+      "name": "Florence Nurse Shark",
+      "weights": [4, 12],
+      "rarity": 8,
+      "genus": 10
+    },
+    {
+      "name": "King Crab",
+      "weights": [2, 4],
+      "rarity": 3,
+      "genus": 11
+    },
+    {
+      "name": "Alaskan King Crab",
+      "weights": [5, 8],
+      "rarity": 7,
+      "genus": 11
+    },
+    {
+      "name": "Old King Crab",
+      "weights": [4, 6],
+      "rarity": 8,
+      "genus": 11
+    },
+    {
+      "name": "Moon Fish",
+      "weights": [4, 6],
+      "rarity": 1,
+      "genus": 12
+    },
+    {
+      "name": "Full Moon Fish",
+      "weights": [14, 18],
+      "rarity": 10,
+      "genus": 12
+    },
+    {
+      "name": "Crescent Moon Fish",
+      "weights": [2, 6],
+      "rarity": 6,
+      "genus": 12
+    },
+    {
+      "name": "New Moon Fish",
+      "weights": [1, 1],
+      "rarity": 3,
+      "genus": 12
+    },
+    {
+      "name": "Half Moon Fish",
+      "weights": [6, 10],
+      "rarity": 8,
+      "genus": 12
+    },
+    {
+      "name": "Harvest Moon Fish",
+      "weights": [10, 14],
+      "rarity": 4,
+      "genus": 12
+    },
+    {
+      "name": "Sea Horse",
+      "weights": [12, 16],
+      "rarity": 2,
+      "genus": 13
+    },
+    {
+      "name": "Rocking Sea Horse",
+      "weights": [14, 18],
+      "rarity": 3,
+      "genus": 13
+    },
+    {
+      "name": "Clydesdale Sea Horse",
+      "weights": [14, 20],
+      "rarity": 5,
+      "genus": 13
+    },
+    {
+      "name": "Arabian Sea Horse",
+      "weights": [14, 20],
+      "rarity": 7,
+      "genus": 13
+    },
+    {
+      "name": "Pool Shark",
+      "weights": [9, 11],
+      "rarity": 3,
+      "genus": 14
+    },
+    {
+      "name": "Kiddie Pool Shark",
+      "weights": [8, 12],
+      "rarity": 5,
+      "genus": 14
+    },
+    {
+      "name": "Swimming Pool Shark",
+      "weights": [8, 12],
+      "rarity": 6,
+      "genus": 14
+    },
+    {
+      "name": "Olympic Pool Shark",
+      "weights": [8, 12],
+      "rarity": 7,
+      "genus": 14
+    },
+    {
+      "name": "Brown Bear Acuda",
+      "weights": [10, 18],
+      "rarity": 2,
+      "genus": 15
+    },
+    {
+      "name": "Black Bear Acuda",
+      "weights": [10, 18],
+      "rarity": 3,
+      "genus": 15
+    },
+    {
+      "name": "Koala Bear Acuda",
+      "weights": [10, 18],
+      "rarity": 4,
+      "genus": 15
+    },
+    {
+      "name": "Honey Bear Acuda",
+      "weights": [10, 18],
+      "rarity": 5,
+      "genus": 15
+    },
+    {
+      "name": "Polar Bear Acuda",
+      "weights": [12, 20],
+      "rarity": 6,
+      "genus": 15
+    },
+    {
+      "name": "Panda Bear Acuda",
+      "weights": [14, 20],
+      "rarity": 7,
+      "genus": 15
+    },
+    {
+      "name": "Kodiac Bear Acuda",
+      "weights": [14, 20],
+      "rarity": 8,
+      "genus": 15
+    },
+    {
+      "name": "Grizzly Bear Acuda",
+      "weights": [16, 20],
+      "rarity": 10,
+      "genus": 15
+    },
+    {
+      "name": "Cutthroat Trout",
+      "weights": [2, 10],
+      "rarity": 2,
+      "genus": 16
+    },
+    {
+      "name": "Captain Cutthroat Trout",
+      "weights": [4, 10],
+      "rarity": 6,
+      "genus": 16
+    },
+    {
+      "name": "Scurvy Cutthroat Trout",
+      "weights": [4, 10],
+      "rarity": 7,
+      "genus": 16
+    },
+    {
+      "name": "Piano Tuna",
+      "weights": [13, 17],
+      "rarity": 5,
+      "genus": 17
+    },
+    {
+      "name": "Grand Piano Tuna",
+      "weights": [16, 20],
+      "rarity": 10,
+      "genus": 17
+    },
+    {
+      "name": "Baby Grand Piano Tuna",
+      "weights": [12, 18],
+      "rarity": 9,
+      "genus": 17
+    },
+    {
+      "name": "Upright Piano Tuna",
+      "weights": [12, 18],
+      "rarity": 6,
+      "genus": 17
+    },
+    {
+      "name": "Player Piano Tuna",
+      "weights": [12, 18],
+      "rarity": 6,
+      "genus": 17
+    }
+  ]
+  

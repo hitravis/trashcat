@@ -1,12 +1,12 @@
 import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
-import { Configuration, OpenAIApi } from "openai";
+import { OpenAI } from "openai";
 import { Command } from "../../structures/Command";
 
-// Set up OpenAI.
-const configuration = new Configuration({
-    apiKey: process.env.openaiKey,
+// Setup OpenAI.
+const openai = new OpenAI({
+    apiKey: process.env.openaiKey
 });
-const openai = new OpenAIApi(configuration);
+
 
 export default new Command({
     data: new SlashCommandBuilder()
@@ -24,26 +24,37 @@ export default new Command({
         if (prompt == null) {
             return interaction.followUp("Something went wrong. Sorry!");
         };
+        
+        let completion;
+        try {
+            completion = await openai.chat.completions.create({
+                model: "gpt-3.5-turbo",
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.9,
+                max_tokens: 512,
+            });
+        } catch (err: unknown) {
+            // If the error is something we can parse...
+            if (err instanceof Error) {
+                return interaction.followUp(`An error has occurred: ${err.message}`);
+            }
 
-        const completion = await openai.createCompletion({
-            model: "text-davinci-002",
-            prompt: prompt,
-            temperature: 0.9,
-            max_tokens: 512,
-        });
+            // Otherwise just sent a default error message.
+            return interaction.followUp("Something went wrong. Sorry!");
+        }
 
         // Ensure that there are choices.
-        const choices = completion.data.choices;
+        const choices = completion.choices;
         if (choices == undefined) {
             return interaction.followUp("Something went wrong. Sorry!");
         };
 
         // Ensure that the text field is defined.
-        const response: string | undefined = choices[0].text;
-        if (response == undefined) {
+        const response: string | null = choices[0].message.content;
+        if (response == null) {
             return interaction.followUp("Something went wrong. Sorry!");
         };
-        
+
         // Create an embed to display the result.
         const embed = new EmbedBuilder()
             .setTitle("OpenAI")

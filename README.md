@@ -15,4 +15,9 @@ A Discord application written using TypeScript and Discord.js v14.
 - *guildId* - The Discord server which to register slash commands for quick development.
 - *environment* - The environment which the process is currently running on.
 - *mongoURI* - The URI used to connect to a MongoDB database.
-- *openaiKey* - Used specifically for the OpenAI command; an API key can be generated [here](https://beta.openai.com/account/api-keys).
+- *openaiKey* - Used specifically for the OpenAI command; an API key can be generated [here](https://platform.openai.com/account/api-keys).
+
+**Updating Dependencies**
+- To update the dependencies in the *package.json* file, simply input these commands:
+-- *ncu -g*
+-- *npm install*

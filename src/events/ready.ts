@@ -13,8 +13,8 @@ export default new Event('ready', async (client) => {
         if (!reminders) return;
         
         // Sanity check their member id.
-        const memberId: string | undefined = user.memberId;
-        if (memberId == undefined) return;
+        const memberId: string | null | undefined = user.memberId;
+        if (memberId == undefined || memberId == null) return;
         
         // Sanity check their member object.
         const member = await client.users.fetch(memberId);

@@ -6,7 +6,7 @@ import {
     SlashCommandBuilder,
     SlashCommandSubcommandsOnlyBuilder
 } from "discord.js";
-import { ExtendedClient } from "../structures/discord/Client";
+import { ExtendedClient } from "../structures/Client";
 
 
 export interface ExtendedInteraction extends CommandInteraction {

@@ -3,6 +3,7 @@ import {
     Client, 
     ClientEvents, 
     Collection, 
+    EmbedBuilder, 
     GatewayIntentBits 
 } from "discord.js";
 import { CommandType } from "../typings/Command";
@@ -11,6 +12,7 @@ import { Event } from "./Event";
 import mongoose from "mongoose";
 import glob from "glob-promise";
 import { join } from "path";
+import { Player } from "discord-player";
 
 
 export class ExtendedClient extends Client {
@@ -22,7 +24,8 @@ export class ExtendedClient extends Client {
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMembers,
                 GatewayIntentBits.GuildMessages,
-                GatewayIntentBits.DirectMessages
+                GatewayIntentBits.DirectMessages,
+                GatewayIntentBits.GuildVoiceStates
             ] 
         });
     }
@@ -73,17 +76,35 @@ export class ExtendedClient extends Client {
             this.on(event.event, event.run);
         });
 
-        // Mongoose
-        if (!process.env.mongoURI) return;
+        // Discord Player
+        // Define the player here so that it can be supplied with the client object.
+        const player = new Player(this);
+        // Load the default extractors.
+        player.extractors.loadDefault();
+        // this event is emitted whenever discord-player starts to play a track
+        player.events.on('playerStart', (queue, track) => {
+            // we will later define queue.metadata object while creating the queue
+            let embed = new EmbedBuilder()
+                .setTitle("Music Player")
+                .addFields(
+                    { name: "Name", value: track.title },
+                    { name: "Artist", value: track.author },
+                    { name: "Duration", value: track.duration }
+                )
+            queue.metadata.channel.send({ embeds: [embed] });
+        });
 
-        // As of Mongoose v7, strictQuery needs to be false.
-        mongoose.set("strictQuery", false);
-        
-        try {
-            await mongoose.connect(process.env.mongoURI);
-            console.log('Connected to MongoDB.');
-        } catch {
-            console.log('Could not connect to MongoDB.');
+        // Mongoose
+        if (process.env.mongoURI) {
+            // As of Mongoose v7, strictQuery needs to be false.
+            mongoose.set("strictQuery", false);
+            
+            try {
+                await mongoose.connect(process.env.mongoURI);
+                console.log('Connected to MongoDB.');
+            } catch {
+                console.log('Could not connect to MongoDB.');
+            }
         }
     }
 }

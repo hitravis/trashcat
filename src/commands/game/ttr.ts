@@ -121,8 +121,8 @@ export default new Command({
                 lastUpdated = new Date(0);
                 lastUpdated.setUTCSeconds(response.data.lastUpdated);
                 embed.setFooter({
-                    text: `Last updated on ${lastUpdated.toLocaleDateString('en-us')} at ` + 
-                    `${lastUpdated.toLocaleTimeString('en-us')}.`
+                    text: `Last updated on ${lastUpdated.toLocaleDateString()} at ` + 
+                    `${lastUpdated.toLocaleTimeString()}.`
                 });
                 break;
 

@@ -67,7 +67,7 @@ export default new Command({
                 embed.setDescription(`**Total Population:** ${responseData.totalPopulation}`);
                 
                 // Population the fields with all of the district population data.
-                for (const [key, value] of Object.entries(responseData.populationByDistrict)) {
+                for (const [key, value] of Object.entries(responseData.populationByDistrict).sort()) {
                     // Also get the online status of the district to display.
                     const onlineStatus: string = responseData.statusByDistrict[key];
                     

@@ -1,3 +1,18 @@
+interface DistrictPopulationByDistrict {
+    [key: string]: number,
+};
+
+interface DistrictStatusByDistrict {
+    [key: string]: string
+}
+
+export interface DistrictPopulationData {
+    lastUpdated: number,
+    totalPopulation: number,
+    populationByDistrict: DistrictPopulationByDistrict,
+    statusByDistrict: DistrictStatusByDistrict,
+};
+
 export interface Invasion extends Object {
     asOf: number,
     type: string,

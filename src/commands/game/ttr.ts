@@ -1,7 +1,7 @@
 import axios from "axios";
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
-import { FieldOffice, Invasion } from "../../typings/commands/game/ttr";
+import { DistrictPopulationData, FieldOffice, Invasion } from "../../typings/commands/game/ttr";
 
 const TTR_POPULATION = "https://www.toontownrewritten.com/api/population";
 const TTR_INVASIONS = "https://www.toontownrewritten.com/api/invasions";
@@ -53,24 +53,37 @@ export default new Command({
         
         switch (args.getSubcommand()) {
             case "population":
+                let responseData: DistrictPopulationData;
                 // Get the population data from the Toontown Rewritten website.
                 try {
                     response = await axios.get(TTR_POPULATION);
+                    responseData = response.data;
                 } catch (error) {
                     console.log(error);
                     return;
                 }
 
                 // Display the total population.
-                embed.setDescription(`**Total Population:** ${response.data.totalPopulation}`);
+                embed.setDescription(`**Total Population:** ${responseData.totalPopulation}`);
                 
                 // Population the fields with all of the district population data.
-                for (const [key, value] of Object.entries(response.data.populationByDistrict)) {
+                for (const [key, value] of Object.entries(responseData.populationByDistrict)) {
                     // Also get the online status of the district to display.
-                    const onlineStatus: string = response.data.statusByDistrict[key];
+                    const onlineStatus: string = responseData.statusByDistrict[key];
+                    
+                    // Select an emoji to represent the fullness of the district. These values mirror the ones seen
+                    // in the actual game's shard page.
+                    let displayEmoji: string;
+                    if (value < 300) {
+                        displayEmoji = ":blue_circle:";
+                    } else if (value < 500) {
+                        displayEmoji = ":green_circle:";
+                    } else {
+                        displayEmoji = ":red_circle:";
+                    }
 
                     embed.addFields({
-                        name: `${key} (${onlineStatus})`,
+                        name: `${displayEmoji} ${key} (${onlineStatus})`,
                         value: `${value}`,
                         inline: true,
                     });

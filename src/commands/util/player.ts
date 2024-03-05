@@ -90,6 +90,29 @@ export default new Command({
                     embed.setDescription(`Currently playing: ${queue.currentTrack}`)
                 }
 
+                // Compile a list of songs that are in the queue.
+                let trackList: string[] = [];
+                let trackNum = 1;
+                queue?.tracks.data.forEach(track => {
+                    if (trackNum <= 10) {
+                        trackList.push(`${trackNum}: **${track.title} by ${track.author}** (${track.duration})`);
+                        trackNum += 1;
+                    }
+                });
+                
+                // Combine the track list.
+                let trackListStr = trackList.join('\n');
+
+                // Since we only show the first 10 values, make sure we display the amount we aren't showing.
+                let trackAmount = queue?.tracks.data.length;
+                if (trackAmount !== undefined && trackAmount > 10) {
+                    let trackListExtra = `\n**...and ${trackAmount - 10} more**`;
+                    trackListStr += trackListExtra;
+                }
+                
+                // Set the description.
+                embed.setDescription(trackListStr);
+
                 // Edit the footer based on the current size of the queue.
                 const size = queue?.getSize();
                 if (size !== undefined) {

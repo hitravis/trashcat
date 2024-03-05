@@ -128,6 +128,10 @@ export default new Command({
 
                 queue?.node.resume();
                 return interaction.followUp("Resumed the current song.");
+            
+            case "stop":
+                queue?.node.stop();
+                return interaction.followUp("See you later!");
 
             default:
                 return interaction.followUp("Something went wrong. Sorry!");

@@ -93,6 +93,17 @@ export class ExtendedClient extends Client {
                 )
             queue.metadata.channel.send({ embeds: [embed] });
         });
+        // Listen for any player errors.
+        player.events.on('playerError', (queue) => {
+            queue.node.stop();
+            queue.metadata.channel.send("Oops! Something went wrong.");
+            console.log("Player: a playerError has occurred.");
+        });
+        player.events.on('error', (queue) => {
+            queue.node.stop();
+            queue.metadata.channel.send("Oops! Something went wrong.");
+            console.log("Player: an error has occurred.");
+        });
 
         // Mongoose
         if (process.env.mongoURI) {

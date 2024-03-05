@@ -9,8 +9,10 @@
     "mediaplex": "^0.0.9",
     "mongoose": "^8.2.0",
     "ms": "^2.1.3",
+    "node-pre-gyp": "^0.17.0",
     "openai": "^4.28.4",
-    "youtube-ext": "^1.1.16"
+    "rebuild": "^0.1.2",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",

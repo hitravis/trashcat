@@ -82,12 +82,14 @@ export default new Command({
 
             case "queue":
                 const embed = new EmbedBuilder().setTitle("Music Player");
+
+                let desc: string;
                 
                 // Set description based on if there's a track currently playing.
                 if (!queue?.currentTrack) {
-                    embed.setDescription("Currently playing: nothing");
+                    desc = "Currently playing: nothing";
                 } else {
-                    embed.setDescription(`Currently playing: ${queue.currentTrack}`)
+                    desc = `Currently playing: ${queue.currentTrack}`
                 }
 
                 // Compile a list of songs that are in the queue.
@@ -99,19 +101,22 @@ export default new Command({
                         trackNum += 1;
                     }
                 });
-                
+
                 // Combine the track list.
-                let trackListStr = trackList.join('\n');
+                if (trackList) {
+                    desc += "\n\n"
+                    desc += trackList.join('\n');
+                }
 
                 // Since we only show the first 10 values, make sure we display the amount we aren't showing.
                 let trackAmount = queue?.tracks.data.length;
                 if (trackAmount !== undefined && trackAmount > 10) {
                     let trackListExtra = `\n**...and ${trackAmount - 10} more**`;
-                    trackListStr += trackListExtra;
+                    desc += trackListExtra;
                 }
                 
                 // Set the description.
-                embed.setDescription(trackListStr);
+                embed.setDescription(desc);
 
                 // Edit the footer based on the current size of the queue.
                 const size = queue?.getSize();

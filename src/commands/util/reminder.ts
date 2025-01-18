@@ -95,14 +95,14 @@ export default new Command({
         };
 
         // Parse their arguments.
-        const remindTime = args.getString("time");
+        const remindTime = Number(args.getString("time"));
         const reminder = args.getString("reminder");
         if (reminder == null || remindTime == null) {
             return interaction.followUp("Something went wrong. Sorry!");
         };
         
         // Parse the remind time they gave.
-        const timestamp: number = ms(remindTime);
+        const timestamp: number = Number(ms(remindTime));
         
         // Turn their timestamp into a date object, adding the timestamp of the current time to it.
         const reminderDate = new Date(Date.now() + timestamp);

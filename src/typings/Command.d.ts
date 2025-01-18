@@ -4,7 +4,8 @@ import {
     CommandInteractionOptionResolver, 
     GuildMember, 
     SlashCommandBuilder,
-    SlashCommandSubcommandsOnlyBuilder
+    SlashCommandSubcommandsOnlyBuilder,
+    SlashCommandOptionsOnlyBuilder
 } from "discord.js";
 import { ExtendedClient } from "../structures/Client";
 
@@ -22,6 +23,6 @@ interface RunOptions {
 type RunFunction = (options: RunOptions) => any;
 
 export type CommandType = {
-    data: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder;
+    data: SlashCommandBuilder | SlashCommandOptionsOnlyBuilder | SlashCommandSubcommandsOnlyBuilder;
     execute: RunFunction;
 };

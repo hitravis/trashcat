@@ -13,6 +13,7 @@ import mongoose from "mongoose";
 import glob from "glob-promise";
 import { join } from "path";
 import { Player } from "discord-player";
+import { DefaultExtractors } from '@discord-player/extractor';
 
 
 export class ExtendedClient extends Client {
@@ -80,7 +81,7 @@ export class ExtendedClient extends Client {
         // Define the player here so that it can be supplied with the client object.
         const player = new Player(this);
         // Load the default extractors.
-        player.extractors.loadDefault();
+        player.extractors.loadMulti(DefaultExtractors);
         // this event is emitted whenever discord-player starts to play a track
         player.events.on('playerStart', (queue, track) => {
             // we will later define queue.metadata object while creating the queue

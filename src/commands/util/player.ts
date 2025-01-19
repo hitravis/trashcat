@@ -1,4 +1,4 @@
-import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, PermissionFlagsBits, PermissionsBitField, SlashCommandBuilder } from "discord.js";
 import { Command } from "../../structures/Command";
 import { useMainPlayer, useQueue } from "discord-player";
 
@@ -44,6 +44,43 @@ export default new Command({
         const channel = interaction.member.voice.channel;
         if (channel === null) {
             return interaction.followUp("You need to be in a voice channel to use this command.");
+        };
+        
+        const me = interaction.guild?.members.me;
+        if (me === undefined || me === null) {
+            return interaction.followUp("Nope.");
+        };
+        const voiceChannel = me.voice.channel;
+        
+        // Check if already in voice channel.
+        if (
+            voiceChannel && voiceChannel !== channel
+        ) {
+            return interaction.followUp(
+                'I am already playing in a different voice channel!',
+            );
+        };
+        
+        // Check for connect permission.
+        if (
+            !channel
+            .permissionsFor(me)
+            .has(PermissionsBitField.Flags.Connect)
+        ) {
+            return interaction.followUp(
+                'I do not have permission to join your voice channel!',
+            );
+        };
+        
+        // Check for speak permission.
+        if (
+            !channel
+            .permissionsFor(me)
+            .has(PermissionsBitField.Flags.Speak)
+        ) {
+            return interaction.followUp(
+                'I do not have permission to speak in your voice channel!',
+            );
         };
         
         // Some of the commands require the queue, which requires a guildId to find.
